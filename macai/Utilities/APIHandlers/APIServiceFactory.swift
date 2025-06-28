@@ -34,6 +34,10 @@ class APIServiceFactory {
             return DeepseekHandler(config: config, session: session)
         case "openrouter":
             return OpenRouterHandler(config: config, session: session)
+        case "copilot_personal":
+            return GithubCopilotHandler(config: config, session: session)
+        case "copilot_enterprise":
+            return GithubCopilotHandler(config: config, session: session)
         default:
             fatalError("Unsupported API service: \(config.name)")
         }
