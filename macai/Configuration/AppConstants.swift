@@ -8,6 +8,7 @@
 import Foundation
 
 struct AppConstants {
+    static let defaultMaxTokensForChatNameGeneration = 4096
     static let requestTimeout: TimeInterval = 180
     static let apiUrlChatCompletions: String = "https://api.openai.com/v1/chat/completions"
     static let chatGptDefaultModel = "gpt-4o"
@@ -258,12 +259,33 @@ struct AppConstants {
                 "deepseek/deepseek-r1:free",
             ]
         ),
+        "copilot_personal": defaultApiConfiguration(
+            name: "GitHub Copilot Personal (Experimental)",
+            url: "https://api.individual.githubcopilot.com/chat/completions",
+            apiKeyRef: "https://api.individual.githubcopilot.com/docs/authentication",
+            apiModelRef: "https://api.individual.githubcopilot.com/models",
+            defaultModel: "gpt-4o-mini",
+            models: [
+                "gpt-4o-mini"
+            ]
+        ),
+        "copilot_enterprise": defaultApiConfiguration(
+            name: "GitHub Copilot Business (Experimental)",
+            url: "https://api.business.githubcopilot.com/chat/completions",
+            apiKeyRef: "https://api.business.githubcopilot.com/docs/authentication",
+            apiModelRef: "https://api.business.githubcopilot.com/models",
+            defaultModel: "gpt-4o-mini",
+            models: [
+                "gpt-4o-mini"
+            ]
+        )
     ]
 
-    static let apiTypes = ["chatgpt", "ollama", "claude", "xai", "gemini", "perplexity", "deepseek", "openrouter"]
+    static let apiTypes = ["chatgpt", "ollama", "claude", "xai", "gemini", "perplexity", "deepseek", "openrouter", "copilot_personal", "copilot_enterprise"]
     static let newChatNotification = Notification.Name("newChatNotification")
     static let largeMessageSymbolsThreshold = 25000
     static let thumbnailSize: CGFloat = 300
+    static let copilotProviderKeys = ["copilot_personal", "copilot_enterprise"]
 }
 
 func getCurrentFormattedDate() -> String {
